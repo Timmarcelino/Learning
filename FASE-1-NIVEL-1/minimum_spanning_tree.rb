@@ -27,7 +27,23 @@ class Graph
   end
 
   def kruskal_mst
+    result = []
+    sorted_edges = @edges.sort_by { |edge| edge[2] } # Ordena as arestas pelo peso
 
+    parent = Array.new(@vertices) { |v| v }
+
+    sorted_edges.each do |edge|
+      u, v, w = edge
+
+      root_u = find(parent, u)
+      root_v = find(parent, v)
+
+      if root_u != root_v
+        result << edge
+        union(parent, root_u, root_v)
+      end
+    end
+    result
   end
 
   def prim_mst
