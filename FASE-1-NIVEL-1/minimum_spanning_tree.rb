@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Graph
   attr_reader :vertices, :edges
 
@@ -18,10 +20,10 @@ class Graph
 
   def minimum_spanning_tree
     if density > 0.5
-      puts "Usando Kruskal para um grafo denso"
+      puts 'Usando Kruskal para um grafo denso'
       kruskal_mst
     else
-      puts "Usando Prim para um grafo esparso"
+      puts 'Usando Prim para um grafo esparso'
       prim_mst
     end
   end
@@ -33,7 +35,7 @@ class Graph
     parent = Array.new(@vertices) { |v| v }
 
     sorted_edges.each do |edge|
-      u, v, w = edge
+      u, v, = edge
 
       root_u = find(parent, u)
       root_v = find(parent, v)
@@ -57,11 +59,9 @@ class Graph
       @edges.each do |edge|
         u, v, w = edge
 
-        if selected[u] ^ selected[v]
-          if min_edge.nil? || w < min_edge[2]
-            min_edge = edge
-          end
-        end
+        next unless selected[u] ^ selected[v]
+
+        min_edge = edge if min_edge.nil? || w < min_edge[2]
       end
 
       result << min_edge
@@ -74,14 +74,24 @@ class Graph
   private
 
   def find(parent, node)
-    if parent[node] != node
-      parent[node] = find(parent, parent[node])
-    end
+    parent[node] = find(parent, parent[node]) if parent[node] != node
     parent[node]
   end
+
   def union(parent, x, y)
     root_x = find(parent, x)
     root_y = find(parent, y)
     parent[root_x] = root_y
   end
 end
+
+## Teste da implementação:
+graph = Graph.new(4)
+graph.add_edge(0, 1, 10)
+graph.add_edge(0, 2, 6)
+graph.add_edge(0, 3, 5)
+graph.add_edge(1, 3, 15)
+graph.add_edge(2, 3, 4)
+
+minimum_spanning_tree = graph.minimum_spanning_tree
+minimum_spanning_tree.each { |edge| puts "#{edge[0]} - #{edge[1]} : #{edge[2]}" }
