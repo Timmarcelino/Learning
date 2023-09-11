@@ -47,7 +47,28 @@ class Graph
   end
 
   def prim_mst
+    result = []
+    selected = Array.new(@vertices, false)
+    selected[0] = true
 
+    (@vertices - 1).times do
+      min_edge = nil
+
+      @edges.each do |edge|
+        u, v, w = edge
+
+        if selected[u] ^ selected[v]
+          if min_edge.nil? || w < min_edge[2]
+            min_edge = edge
+          end
+        end
+      end
+
+      result << min_edge
+      selected[min_edge[0]] = true
+      selected[min_edge[1]] = true
+    end
+    result
   end
 
   private
