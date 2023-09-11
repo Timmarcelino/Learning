@@ -7,7 +7,4 @@ end
 
 ### TESTE
 arr = [7, 2, 3, 4, 5, 6]
-puts arr.inspect
-puts minSum(arr)
-
-##Resultado esperado: 10
+puts minSum(arr).inspect
