@@ -32,3 +32,12 @@ def maximize_array(array, k)
 end
 
 #Testes
+
+
+arr = [ -2, 0, 5, -1, 2 ]
+k = 4
+puts maximize_array(arr, k)
+
+arr = [ 9, 8, 8, 5]
+k = 3
+puts maximize_array(arr, k)
