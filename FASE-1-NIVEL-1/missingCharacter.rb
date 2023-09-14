@@ -8,7 +8,7 @@ def missing_character(str_Frase)
   letras_faltantes = alfabeto - letras_presentes
 
   if letras_faltantes.empty?
-    return "A Frase é um Pangram"
+    return -1
   else
     return letras_faltantes.join(', ')
   end
@@ -16,6 +16,12 @@ end
 
 ##########################################
 # Teste
-frase =  'A rápida raposa marrom salta'
+print 'Digite uma frase: '
+frase =  gets.chomp
+resultado = missing_character(frase)
 
-puts missing_character(frase)
+if resultado == -1
+  puts "A frase é um Pangram!!! Parabéns!!!"
+else
+  puts "Faltam as letras: #{resultado} "
+end
