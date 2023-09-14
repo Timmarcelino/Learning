@@ -3,9 +3,9 @@
 ## que podem tornar a string um Pangram.
 
 def missing_character(str_Frase)
-  alfabeto = ('a' .. 'z').to_a
-  letras_presentes = str_Frase.downcase.scan(/[a-z]/).uniq
-  letras_faltantes = alfabeto - letras_presentes
+  base = ('a' .. 'z').to_a
+  letras_frase = str_Frase.downcase.scan(/[a-z]/).uniq
+  letras_faltantes = base - letras_frase
 
   if letras_faltantes.empty?
     return -1
@@ -17,7 +17,7 @@ end
 ##########################################
 # Teste
 print 'Digite uma frase: '
-frase =  gets.chomp
+frase= gets.chomp
 resultado = missing_character(frase)
 
 if resultado == -1
