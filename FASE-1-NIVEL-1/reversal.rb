@@ -9,3 +9,14 @@ def rotateArray(array, k)
   end
 end
 ##########################
+k = 3
+array = [1]
+7.times do
+  rnd = rand(0..100)
+  unless array.include?(rnd)
+    array << rnd
+  end
+end
+puts k
+puts array.inspect
+puts rotateArray(array, k).inspect
