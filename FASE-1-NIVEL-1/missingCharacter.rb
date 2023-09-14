@@ -11,6 +11,7 @@ def missing_character(str_Frase)
     return "A Frase é um Pangram"
   else
     return letras_faltantes.join(', ')
+  end
 end
 
 ##########################################
