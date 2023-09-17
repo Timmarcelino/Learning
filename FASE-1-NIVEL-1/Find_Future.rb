@@ -4,45 +4,49 @@
 ## fornecido arr[]. Se tal data não existir, imprima “-1”
 #######################################
 require 'date'
-def find_future(array, pesquisa)
-  formatDate = "%d/%m/%Y"
-  newArr = []
-  array.each{|data|
-    newArr << Date.strptime(data, formatDate)
-  }
-  newArr.sort!
-  newPesq = []
+def parse_dates(date_strings)
+    formatDate = "%d/%m/%Y"
+    dates = []
   
-  pesquisa.each{|data|
-    newPesq << Date.strptime(data, formatDate)
-  }
-  resposta = []
-  for data in newPesq
-    futuro = -1
-    for dataf in newArr
-       if dataf > data
-         futuro = dataf
-         break
-       end
+    date_strings.each do |date_str|
+      begin
+        date = Date.strptime(date_str, formatDate)
+        dates << date
+      rescue ArgumentError => e
+        puts "Erro ao analisar a data: #{e.message}"
+      end
     end
-    resposta << futuro
+  
+    return dates
   end
-  return resposta
-end
-
-
+  
+  def find_future(array, pesquisa)
+    newArr = parse_dates(array).sort
+    newPesq = parse_dates(pesquisa)
+  
+    resposta = []
+  
+    newPesq.each do |data|
+      futuro = newArr.find { |dataf| dataf > data }
+      resposta << (futuro || nil)
+    end
+  
+    return resposta
+  end
 
 #######################################
 #Testes
+
 formatDate = "%d/%m/%Y"
+
 arr = ['22/4/1233', '1/3/633', '23/5/56645', '4/12/233']
 puts arr.inspect
 query = []
-#query << "23/3/4345"
+query << "23/3/4345"
 query << '12/3/201'
 #query << "4/4/34234234"
 puts query.inspect
 #__
 resposta = find_future(arr, query)
-puts "A(s) data(s) futura(s) são:"
+puts "\n\nA(s) data(s) futura(s) são:"
 resposta.each { |i| puts i.strftime(formatDate) }
