@@ -42,3 +42,5 @@ if result == -1
 else
   puts "O elemento #{alvo} foi encontrado no índice #{resultado}"
 end
+
+##
