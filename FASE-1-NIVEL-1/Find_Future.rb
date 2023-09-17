@@ -5,7 +5,28 @@
 #######################################
 
 def find_future(array, pesquisa)
-    
+  formatDate = "%d/%m/%Y"
+  newArr = []
+  array.each{|data|
+    newArr << Date.strptime(data, formatDate)
+  }
+  newArr.sort!
+  newPesq = []
+  pesquisa.each{|data|
+    newPesq << Date.strptime(data, formatDate)
+  }
+  resposta = []
+  for data in newQuery
+    futuro = -1
+    for dataf in newArr
+       if dataf > data
+         futuro = dataf
+         break
+       end
+    end
+    resposta << futuro
+  end
+  return resposta
 end
 
 
@@ -18,4 +39,4 @@ puts arr.inspect
 #query = ["23/3/4345", "12/3/2"]
 query = ["4/4/34234234"]
 puts query.inspect
-find_future(arr, query)
+puts "A(s) data(s) futura(s) são #{find_future(arr, query.inspect)} "
