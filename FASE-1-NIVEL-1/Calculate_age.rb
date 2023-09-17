@@ -1,30 +1,30 @@
 ## Tendo uma a data fornecida e a data de nascimento, encontre a idade para a data fornecida.
-
 require 'date'
-def calculateAge( dtNascimento, dtFornecida)
-    formatDate = "%d/%m/%Y"
-    nasc = Date.strptime(dtNascimento, formatDate)
-    dataInformada = Date.strptime(dtFornecida, formatDate)
-
-    anos = (dataInformada - nasc).to_i / 365
-    if nasc.mday > dataInformada.mday
-        dias = (dataInformada - Date.new((dataInformada -31).year, (dataInformada-31).mon, nasc.mday)).to_i
-        if nasc.mon > dataInformada.mon
-            meses = (12 - nasc.mon) + dataInformada.mon
-        elsif nasc.mon == dataInformada.mon
-            meses = 11
-        else
-            meses = dataInformada.mon - nasc.mon
-        end
-    else
-        dias = dataInformada.mday - nasc.mday
-        if nasc.mon > dataInformada.mon
-            meses = (12 - nasc.mon) + dataInformada.mon + 1
-        else
-            meses = dataInformada.mon - nasc.mon + 1
-        end
+def calculate_age(dt_nascimento, dt_fornecida)
+  format_date = "%d/%m/%Y"
+    
+    begin
+      nasc = Date.strptime(dt_nascimento, format_date)
+      data_informada = Date.strptime(dt_fornecida, format_date)
+      
+      anos = (data_informada.year - nasc.year)
+      meses = (data_informada.month - nasc.month)
+      dias = (data_informada.day - nasc.day)
+      
+      if dias < 0
+        meses -= 1
+        dias += Date.new(data_informada.year, data_informada.month, -1).day
+      end
+      
+      if meses < 0
+        anos -= 1
+        meses += 12
+      end
+      
+      return { Anos: anos, Meses: meses, Dias: dias }
+    rescue ArgumentError => e
+      return { error: "Erro ao analisar a data: #{e.message}" }
     end
-    return {Anos: anos, Meses: meses, Dias: dias}
 end
 
 ###################################
@@ -42,6 +42,6 @@ anoI = '2023'
 
 dataNascimento = diaN.to_i.to_s + '/' + mesN.to_i.to_s + '/' + anoN.to_i.to_s
 dataInserida = diaI.to_i.to_s + '/' + mesI.to_i.to_s + '/' + anoI.to_i.to_s
-resposta = calculateAge(dataNascimento, dataInserida)
+resposta = calculate_age(dataNascimento, dataInserida)
 
 puts "\n\n A idade de acordo com os dados fornecidos é: #{resposta}\n\n"
