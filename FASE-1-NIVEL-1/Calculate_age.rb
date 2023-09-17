@@ -33,10 +33,10 @@ end
 #Entrada de dados
 
 diaN = '23'
-mesN = '09'
+mesN = '01'
 anoN = '1981'
 
-diaI = '03'
+diaI = '17'
 mesI = '09'
 anoI = '2023'
 
@@ -44,4 +44,4 @@ dataNascimento = diaN.to_i.to_s + '/' + mesN.to_i.to_s + '/' + anoN.to_i.to_s
 dataInserida = diaI.to_i.to_s + '/' + mesI.to_i.to_s + '/' + anoI.to_i.to_s
 resposta = calculateAge(dataNascimento, dataInserida)
 
-puts "A idade de acordo com os dados fornecidos são #{resposta}"
+puts "\n\n A idade de acordo com os dados fornecidos é: #{resposta}\n\n"
