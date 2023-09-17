@@ -18,7 +18,7 @@ def search_recursivo(array, valor_alvo, esquerda, direita) # Função recursiva 
 
 end
 
-def ordenado?(array)
+def ordenado?(array) ## Verifica se a lsita esta ordenada
   (0...(array.length -1)).each do |i|
     return false if array[i] > array[i+1]
   end
@@ -26,6 +26,19 @@ def ordenado?(array)
 end
 
 def binary_search(array, valor_alvo) # Função principal com a inicialização e a chamada da função recursiva
-  return -1 unless ordenado?(array)
-  return search_recursivo(array, valor_alvo, 0, array.length -1)
+  return -1 unless ordenado?(array) ## pode se implementar uma função de ordenação, mas não foi solicitado
+  return search_recursivo(array, valor_alvo, 0, (array.length -1))
+end
+
+##########################################
+#Teste:
+
+array = [1, 3, 5, 7, 9, 11, 13, 15]
+alvo = 7
+
+resultado = binary_search(array, alvo)
+if result == -1
+  puts "O elemento #{alvo} não foi encontrado na lista"
+else
+  puts "O elemento #{alvo} foi encontrado no índice #{resultado}"
 end
