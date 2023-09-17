@@ -3,7 +3,7 @@
 ## mês e ano. Para cada consulta, a tarefa é imprimir a próxima data mais próxima do array 
 ## fornecido arr[]. Se tal data não existir, imprima “-1”
 #######################################
-
+require 'date'
 def find_future(array, pesquisa)
   formatDate = "%d/%m/%Y"
   newArr = []
@@ -12,11 +12,12 @@ def find_future(array, pesquisa)
   }
   newArr.sort!
   newPesq = []
+  
   pesquisa.each{|data|
     newPesq << Date.strptime(data, formatDate)
   }
   resposta = []
-  for data in newQuery
+  for data in newPesq
     futuro = -1
     for dataf in newArr
        if dataf > data
@@ -33,10 +34,15 @@ end
 
 #######################################
 #Testes
-
+formatDate = "%d/%m/%Y"
 arr = ['22/4/1233', '1/3/633', '23/5/56645', '4/12/233']
 puts arr.inspect
-#query = ["23/3/4345", "12/3/2"]
-query = ["4/4/34234234"]
+query = []
+#query << "23/3/4345"
+query << '12/3/201'
+#query << "4/4/34234234"
 puts query.inspect
-puts "A(s) data(s) futura(s) são #{find_future(arr, query.inspect)} "
+#__
+resposta = find_future(arr, query)
+puts "A(s) data(s) futura(s) são:"
+resposta.each { |i| puts i.strftime(formatDate) }
