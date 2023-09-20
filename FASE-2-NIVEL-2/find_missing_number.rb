@@ -1,21 +1,20 @@
+
 ## Dado um array arr[] de tamanho N-1 com inteiros no intervalo de [1, N], a tarefa é encontrar o 
 ## número que falta nos primeiros N inteiros
 
 def find_missing_number(arr)
-  if arr.empty? # Verifique se o array está vazio
+  return -1 if arr.empty?  #Verifica se o array está vazio
+  
+  n = arr.length + 1 #Tamanho esperado do array
+  soma_esperada = (n * (n+1)) / 2  # Soma total esperada
+
+  soma_atual = arr.sum # Soma dos elementos atuais 
+
+  if soma_esperada - soma_atual > 0
+    return soma_esperada - soma_atual
+  else
     return -1
   end
-  hash = {} # Criando um hash para armazenar os elementos
-  arr.each do |num|
-    hash[num] = true
-  end
-  missing_number = 1
-  (1..arr.length + 1).each do |num|
-    unless hash[num] # Se o número não estiver no hash, ele é o número que falta
-      return num
-    end
-  end
-  retunr -1 # O número faltante não foi encontrado
 end
 #################
 #TESTE
