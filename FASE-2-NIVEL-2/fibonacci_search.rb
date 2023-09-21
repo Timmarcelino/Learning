@@ -39,4 +39,10 @@ def fibonacci_search(arr, x)
     # O elemento não foi encontrado
     return -1
   end
-  
+############################################
+#Teste
+
+arr = [1, 2, 3, 4, 5, 6, 7, 8]
+x = 7
+result = fibonacci_search(arr, x)
+puts "O elemento #{x} está no índice #{result}."
