@@ -3,42 +3,46 @@
 ## Fibonacci
 
 def fibonacci_search(arr, x)
-    # Verifique se o array está vazio
-    if arr.empty?
-      return -1
+    return -1 if arr.empty? # Verifica se o array está vazio
+  
+    # Inicio dos números de Fibonacci
+    fib_m_2 = 0
+    fib_m_1 = 1
+    fib = fib_m_2 + fib_m_1
+  
+    # Encontrando o menor número de Fibonacci maior ou igual ao tamanho do array
+    while fib < arr.size
+      fib_m_2 = fib_m_1
+      fib_m_1 = fib
+      fib = fib_m_2 + fib_m_1
     end
   
-    # Calcule o valor de f(n)
-    f8 = 55
+    offset = -1
   
-    # Inicialize as variáveis low e high
-    low = 0
-    high = arr.size - 1
+    # Executando a pesquisa
+    while fib > 1
+      i = [offset + fib_m_2, arr.size - 1].min
   
-    # Percorra o array
-    while low <= high do
-      # Calcule o índice médio
-      mid = (low + high) / 2
-  
-      # Se x == arr[mid], retorne mid
-      if x == arr[mid]
-        return mid
-      end
-  
-      # Se x < arr[mid], atualize high
-      if x < arr[mid]
-        high = mid - f8
-      end
-  
-      # Caso contrário, atualize low
+      # Se x é maior que o elemento no índice i, o índice é movido de acordo
+      if arr[i] < x
+        fib = fib_m_1
+        fib_m_1 = fib_m_2
+        fib_m_2 = fib - fib_m_1
+        offset = i
+      elsif arr[i] > x
+        # Se x é menor que o elemento no índice i, a procura continua à esquerda
+        fib = fib_m_2
+        fib_m_1 = fib_m_1 - fib_m_2
+        fib_m_2 = fib - fib_m_1
       else
-        low = mid + f8
+        # x é encontrado, retorne o índice
+        return i
       end
     end
   
-    # O elemento não foi encontrado
+    # Se x não for encontrado, retorne -1
     return -1
-  end
+end
 ############################################
 #Teste
 
