@@ -49,4 +49,4 @@ end
 arr = [1, 2, 3, 4, 5, 6, 7, 8]
 x = 7
 result = fibonacci_search(arr, x)
-puts "O elemento #{x} está no índice #{result}."
+puts "\n\nNa lista #{arr.inspect} \nO elemento #{x} está no índice #{result}.\n\n"
