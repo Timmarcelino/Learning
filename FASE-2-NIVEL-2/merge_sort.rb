@@ -5,16 +5,13 @@
 
 def merge_sort(arr)
     return arr if arr.length <= 1
-  
     # Divide o array em duas metades
     mid = arr.length / 2
     left_half = arr[0...mid]
     right_half = arr[mid..-1]
-  
     # Recursivamente, ordena as duas metades
     left_half = merge_sort(left_half)
     right_half = merge_sort(right_half)
-  
     # Combina as duas metades ordenadas
     merge(left_half, right_half)
 end
@@ -33,11 +30,9 @@ def merge(left, right)
         right_idx += 1
       end
     end
-  
     # Adiciona qualquer elemento restante das duas metades
     result += left[left_idx..-1]
     result += right[right_idx..-1]
-  
     result
 end
   #################
