@@ -2,7 +2,7 @@
 ## classificada da lista e o troca pelo primeiro elemento da parte não classificada. 
 ## Este processo é repetido para a parte restante não classificada até que toda a lista 
 ## seja classificada.
-
+############################################
 def selection_sort(arr)
     n = arr.length  
     # Itera por todos os elementos do array
@@ -12,13 +12,12 @@ def selection_sort(arr)
       (i + 1..n - 1).each do |j|
         min_index = j if arr[j] < arr[min_index]
       end
-
       # Troca o elemento atual com o menor elemento encontrado
       arr[i], arr[min_index] = arr[min_index], arr[i]
     end
     return arr
 end
-###########################
+##########################################
 #Teste:
 array =[]
 5.times{
