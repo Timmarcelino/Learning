@@ -16,3 +16,14 @@ def min_sum_prod(arr1, arr2, k)
 
     return res.min # Retorrna o menor valor encontrado
 end
+
+########
+#Teste
+
+arr1 = [1, 3, 5, 7]
+arr2 = [2, 4, 6, 8]
+k = 3
+
+puts "\n\n\n\nArray1: #{arr1.inspect}"
+puts "Array2: #{arr2.inspect}"
+puts "Realizando #{k} modificações a menor soma dos produtos dos arrays é: #{min_sum_prod(arr1, arr2, k)}\n\n\n"
