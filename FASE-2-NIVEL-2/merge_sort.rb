@@ -17,9 +17,9 @@ def merge_sort(arr)
   
     # Combina as duas metades ordenadas
     merge(left_half, right_half)
-  end
+end
   
-  def merge(left, right)
+def merge(left, right)
     result = []
     left_idx = 0
     right_idx = 0
@@ -39,11 +39,13 @@ def merge_sort(arr)
     result += right[right_idx..-1]
   
     result
-  end
+end
   #################
   # Teste:
-  
-  arr = [38, 27, 43, 3, 9, 82, 10]
-  sorted_arr = merge_sort(arr)
-  puts "Array ordenado: #{sorted_arr.inspect}"
-  
+arr =[]
+10.times{
+    rnd = Random.new
+    arr << (rnd.rand(-100..100)).to_i
+}
+sorted_arr = merge_sort(arr)
+puts "Array #{arr.inspect} ordenado = #{sorted_arr.inspect}"
