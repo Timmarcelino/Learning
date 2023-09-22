@@ -16,4 +16,16 @@ def selection_sort(arr)
       # Troca o elemento atual com o menor elemento encontrado
       arr[i], arr[min_index] = arr[min_index], arr[i]
     end
+    return arr
 end
+###########################
+#Teste:
+array =[]
+5.times{
+  rnd = Random.new
+  array << (rnd.rand(-100..100)).to_i
+}
+array_ordenado = selection_sort(array)
+puts "\n\nO array #{array.inspect} ordenado é = #{array_ordenado.inspect}\n\n"
+
+
