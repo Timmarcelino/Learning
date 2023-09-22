@@ -1,7 +1,7 @@
 ## Merge Sort é um algoritmo de ordenação eficiente que utiliza a abordagem de dividir 
 ## para conquistar. Ele divide a matriz não ordenada em duas metades, ordena cada 
 ## metade separadamente e, em seguida, combina as duas metades ordenadas para obter uma 
-## matriz completamente ordenada.
+## matriz completamente ordenada. Valentim Marcelino
 
 def merge_sort(arr)
     return arr if arr.length <= 1
