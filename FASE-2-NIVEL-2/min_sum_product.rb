@@ -3,25 +3,34 @@
 ## ou diminuído em 2.
 
 def min_sum_prod(arr1, arr2, k)
-    sum = arr1.zip(arr2).map { |a,b| a*b }.sum #Soma inicial 
+    sum = arr1.zip(arr2).map { |a, b| a * b}.sum #Soma inicial 
+    
     res =[sum]
 
     (1..k).each do |n|  # k modificações
-        min_val = arr1.min  #Valor moinimo de arr1
+        min_val = arr1.min  # Valor minimo de arr1
+
         min_index = arr1.index(min_val)  #indice do valor minimo
-        arr1[min_index]  += 2 #Modifique em + 2
-        sum += 2 * arr2[min_index] #Recalculando apenas a parte afetada
+
+        if min_val >= 2 
+			arr1[min_index]  -= 2 #Modifique em - 2
+			sum -= 2 * arr2[min_index] #Recalculando apenas a parte afetada			
+		else
+			arr1[min_index]  += 2 #Modifique em + 2
+			sum += 2 * arr2[min_index] #Recalculando apenas a parte afetada
+		end
+
         res << sum # adiciona o novo valor no resultado
     end
-
+    puts res.inspect
     return res.min # Retorrna o menor valor encontrado
 end
 
 ########
 #Teste
 
-arr1 = [1, 3, 5, 7]
-arr2 = [2, 4, 6, 8]
+arr1 = [2, 3, 4, 5, 4]
+arr2 = [3, 4, 2, 3, 2]
 k = 3
 
 puts "\n\n\n\nArray1: #{arr1.inspect}"
