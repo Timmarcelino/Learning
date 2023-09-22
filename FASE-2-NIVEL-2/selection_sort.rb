@@ -1,7 +1,7 @@
 ## Selection Sort seleciona repetidamente o menor (ou maior) elemento da parte não 
 ## classificada da lista e o troca pelo primeiro elemento da parte não classificada. 
 ## Este processo é repetido para a parte restante não classificada até que toda a lista 
-## seja classificada.
+## seja classificada. Valentim Marcelino
 ############################################
 def selection_sort(arr)
     n = arr.length  
