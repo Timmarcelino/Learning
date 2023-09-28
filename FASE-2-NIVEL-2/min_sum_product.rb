@@ -4,34 +4,27 @@
 
 def min_product(a, b, k)
   n = a.length
-  # Calcula a soma inicial dos produtos dos dois arrays
-  sum = a.zip(b).map { |a, b| a * b }.sum
+  diff = 0 # Variável para armazenar a maior diferença entre produtos
+  res = 0 # Variável para armazenar o resultado da soma dos produtos
+  (0...n).each do |i|
+    pro = a[i] * b[i]
+    res += pro # Somando o produto atual ao resultado total
 
-  # Inicializa o array de resultados
-  res = [sum]
+    if (pro < 0 && b[i] < 0)
+      temp = (a[i] + 2 * k) * b[i] # Aumentar a[i] para minimizar o resultado
+    elsif (pro < 0 && a[i] < 0)
+      temp = (a[i] - 2 * k) * b[i] # Diminuir a[i] para minimizar o resultado
+    elsif (pro > 0 && a[i] < 0)
+      temp = (a[i] + 2 * k) * b[i]  # Aumentar a[i] para minimizar o resultado
+    elsif (pro > 0 && a[i] > 0)
+      temp = (a[i] - 2 * k) * b[i]   # Diminuir a[i] para minimizar o resultado
+    end
 
-  # Para cada número de modificações
-  (1..k).each do |n|
-    # Encontre o elemento com o menor valor absoluto em a
-    min_val = a.min_by(&:abs)
-
-    # Encontre o índice do elemento com o menor valor absoluto em a
-    min_index = a.index(min_val)
-
-    # Modifique o elemento com o menor valor absoluto em a
-    a[min_index] += 2 if min_val >= 0
-    a[min_index] -= 2 if min_val < 0
-
-    # Recalcula a soma
-    sum += 2 * b[min_index] if min_val >= 0
-    sum -= 2 * b[min_index] if min_val < 0
-
-    # Adicione o novo valor da soma aos resultados
-    res << sum
+    d = (pro - temp).abs # Calcular a diferença entre o produto original e modificado
+    diff = d if d > diff # Atualizar a maior diferença, se necessário
   end
 
-  # Retorne o menor valor encontrado
-  return res.min
+  return res - diff # Retornar a soma dos produtos menos a maior diferença
 end
 
 # Exemplo de uso:
