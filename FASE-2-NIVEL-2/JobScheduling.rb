@@ -5,23 +5,23 @@
 
 def jobScheduling(array)
     n = array.length
-    array.sort_by! { |job| -job[:profit] } # Ordena decrescente por profit (lucro)
+    array.sort_by! { |job| -job[:profit] } # Ordenar em ordem decrescente por profit (lucro)
     
     deadline_max = array.map{|job| job[:deadline]}.max
-    sequencia = Array.new(deadline_max)
+    sequencia = Array.new(deadline_max)  # matriz para armazenar a sequência de jobs
 
     array.each do |job|
-        deadline = job[:deadline] - 1
+        deadline = job[:deadline] - 1 # Subtrair 1 do prazo para corresponder ao índice da matriz
         while deadline >= 0
-            if sequencia[deadline].nil?
-            sequencia[deadline] = job[:job]
+            if sequencia[deadline].nil? # Verificar se o slot de prazo está vazio
+            sequencia[deadline] = job[:job]  # Atribuir o job ao slot de prazo
             break
             end
-            deadline -= 1
+            deadline -= 1 # Se o slot estiver ocupado, tentar o próximo prazo anterior
         end
     end
 
-    return sequencia
+    return sequencia.compact # Retornar a sequência de jobs, eliminando quaisquer valores nulos
 end
 #################################################
 ## TESTE 
