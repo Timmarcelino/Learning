@@ -3,9 +3,25 @@
 ## Cada job tem prazo mínimo de 1 unidade de tempo.
 ## Maximize o lucro total se apenas um job possa ser agendado por vez.
 
-def jobScheduling(array, t = array.lenght)
-    n = array.lenght
+def jobScheduling(array)
+    n = array.length
+    array.sort_by! { |job| -job[:profit] } # Ordena decrescente por profit (lucro)
     
+    deadline_max = array.map{|job| job[:deadline]}.max
+    sequencia = Array.new(deadline_max)
+
+    array.each do |job|
+        deadline = job[:deadline] - 1
+        while deadline >= 0
+            if sequencia[deadline].nil?
+            sequencia[deadline] = job[:job]
+            break
+            end
+            deadline -= 1
+        end
+    end
+
+    return sequencia
 end
 #################################################
 ## TESTE 
@@ -17,3 +33,6 @@ job_array = [
     {job: 'd', deadline: 1, profit: 25},
     {job: 'e', deadline: 3, profit: 15}
 ]
+
+agenda = jobScheduling(job_array)
+puts "Sequência de jobs: #{agenda.join(', ')}"
