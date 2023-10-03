@@ -25,8 +25,8 @@ def fractional_knapsack(itens, capacidade)
     return mochila, total
 end
 
-
-### TESTE Hash {valor: , peso: }
+################################################
+### TESTE Hash {valor: , peso: } (optei por hash, mas poderia ter criado o objeto item. Depende da necessidade.)
 
 arr_itens = [
     {valor:100, peso:20 }, 
