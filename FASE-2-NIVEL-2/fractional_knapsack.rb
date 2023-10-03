@@ -29,11 +29,11 @@ end
 ### TESTE Hash {lucro: , peso: }
 
 arr_itens = [
-    {lucro:100, peso:20 }, 
-    {lucro:60, peso:10 }, 
-    {lucro:120, peso:30 }, 
+    {lucro:500, peso:30 }, 
+    #{lucro:60, peso:10 }, 
+    #{lucro:120, peso:30 } 
 ] 
-capacidade = 50
+capacidade = 10
 
 mochila, lucro_T = fractional_knapsack(arr_itens, capacidade)
 
