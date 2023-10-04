@@ -4,21 +4,18 @@
 
 
 def min_squares(a, b)    
-  gcd = euclidean_gcd(a, b)  # Encontra o gcd de a e b    
-  return (a / gcd) + (b / gcd) # Calcula o número de quadrados que podem ser cortados
-end
-
-def euclidean_gcd(a, b)    # GCD é número inteiro positivo mais alto que é um divisor de a e b
-    if b == 0
-      return a
-    end      
-    return euclidean_gcd(b, a % b) 
+  mdc = a.gcd(b)
+  if a > b  
+    return b / mdc
+  else
+    return a / mdc
+  end
 end
 
 
 ################
 # TESTE
 
-h = 36
-w = 30
-puts "\n\nPodem ser cortados #{min_squares(h, w)} quadrados em uma folha de #{h} x #{w}\n\n"
+#h = 36
+#w = 30
+#puts "\n\nPodem ser cortados #{min_squares(h, w)} quadrados em uma folha de #{h} x #{w}\n\n"
