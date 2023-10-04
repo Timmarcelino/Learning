@@ -2,8 +2,7 @@
 ## Encontre o número de quadrados que podem ser cortados do papel.
 
 def minimumSquare(a, b)
-    squares = 0
-    puts "#{a} #{b}"
+    squares = 0    
     while b > 0 && a > 0 do
         if a >= b   #  Significa que um quadrado de tamanho 'b x b' cabe no papel.
             squares += (a / b)  # Adiciona a quantidade de quadrados '(b x b)' que podem ser cortados na direção de 'a'
@@ -11,14 +10,13 @@ def minimumSquare(a, b)
         else # Significa que um quadrado de tamanho 'a x a' cabe no papel.
             squares += (b / a)  # Adiciona a quantidade de quadrados '(a x a)' que podem ser cortados na direção de 'b'
             b %= a  # Atualiza o valor de 'b' para ser o papel restante após cortar os quadrados
-        end
-        puts "#{a} #{b} -> #{squares}"
+        end        
     end 
     return squares
 end
 ################
 # TESTE
 
-h = 36
-w = 30
+h = 13
+w = 29
 puts "\n\nPodem ser cortados #{minimumSquare(h, w)} quadrados em uma folha de #{h} x #{w}\n\n"
