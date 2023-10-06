@@ -23,7 +23,7 @@ def partition(arr, low, high)
   pivot = arr[high]  # Escolhe o último elemento como pivô
     i = low - 1 # Inicializa o índice do menor elemento
 
-    (low..high -1).each do |j|  # Percorre o array e move os elementos menores que o pivô para a esquerda
+    (low..(high-1)).each do |j|  # Percorre o array e move os elementos menores que o pivô para a esquerda
       if arr[j] < pivot
         i += 1
           arr[i], arr[j] = arr[j], arr[i]

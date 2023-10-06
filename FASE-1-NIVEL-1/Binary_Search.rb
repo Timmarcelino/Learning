@@ -11,9 +11,9 @@ def search_recursivo(array, valor_alvo, esquerda, direita) # Função recursiva 
   if array[meio] == valor_alvo
     return meio
   elsif array[meio] < valor_alvo
-    return search_recursivo(array, valor_alvo, meio +1, direita)
+    return search_recursivo(array, valor_alvo, (meio +1), direita)
   else
-    return search_recursivo(array, valor_alvo, esquerda, meio-1)
+    return search_recursivo(array, valor_alvo, esquerda, (meio-1))
   end
 
 end
